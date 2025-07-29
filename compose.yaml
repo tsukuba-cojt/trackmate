@@ -1,0 +1,41 @@
+services:
+  frontend:
+    build:
+      context: ./trackmate-front
+      dockerfile: Dockerfile
+    container_name: trackmate_frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: backend
+    ports:
+      - "3401:3401"
+    # volumes:
+    #   - ./backend:/app
+    depends_on:
+      db:
+        condition: service_healthy
+  db:
+    image: mysql:8.0
+    container_name: trackmate_db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: test
+      MYSQL_USER: track
+      MYSQL_PASSWORD: tracktrack
+    ports:
+      - "3300:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+
+volumes:
+  db_data:
