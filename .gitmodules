@@ -1,3 +1,7 @@
 [submodule "backend"]
 	path = backend
 	url = git@github.com:tsukuba-cojt/trackmate-back.git
+
+[submodule "trackmate-front"]
+	path = trackmate-front
+	url = https://github.com/tsukuba-cojt/trackmate-front.git
