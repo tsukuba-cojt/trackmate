@@ -6,6 +6,9 @@ services:
     container_name: trackmate_frontend
     ports:
       - "3000:3000"
+    environment:
+      NEXT_PUBLIC_BASE_API_URL: "http://mast23mc.net/api/"
+      NEXT_PUBLIC_TOKEN: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXIxQGV4YW1wbGUuY29tIiwiZXhwIjo0OTA4NTA4Nzk3LCJzdWIiOiIzYThjNGMxYy1mNDNkLTQ1ZjItOGE2My02NjcxNTNkOTgxNDgifQ.n_wALU5AnKfpAaUbKC_n2c4PUglLqkQUGuUbFePKMGk"
     depends_on:
       - backend
   backend:
